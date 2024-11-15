@@ -565,15 +565,36 @@ namespace ConexionTopCon
                             //    obj_trk2p.R3_SE = se;
                             //}
                         }
+                        var median = rElement.Descendants(nsREF + "Median");
 
                         // Extraer valores de la parte "Median"
-                        var median = rElement.Element("{http://www.joia.or.jp/standardized/namespaces/REF}Median");
+                        //var median = rElement.Element("{http://www.joia.or.jp/standardized/namespaces/REF}Median");
                         if (median != null)
                         {
-                            obj_trk2p.median.Sphere = median.Element("{http://www.joia.or.jp/standardized/namespaces/REF}Sphere")?.Value?.Trim();
-                            obj_trk2p.median.Cylinder = median.Element("{http://www.joia.or.jp/standardized/namespaces/REF}Cylinder")?.Value?.Trim();
-                            obj_trk2p.median.Axis = median.Element("{http://www.joia.or.jp/standardized/namespaces/REF}Axis")?.Value?.Trim();
-                            obj_trk2p.median.SE = median.Element("{http://www.joia.or.jp/standardized/namespaces/REF}SE")?.Value?.Trim();
+                            if (median.Any())
+                            {
+                                // Iterar sobre los elementos hijos dentro de "Measure"
+                                foreach (var childElement in median.Elements())
+                                {
+                                    // Asignar valores según el nombre de cada hijo de "Measure"
+                                    if (childElement.Name == nsREF + "Sphere")
+                                    {
+                                        obj_trk2p.median.Sphere = childElement.Value?.Trim();
+                                    }
+                                    else if (childElement.Name == nsREF + "Cylinder")
+                                    {
+                                        obj_trk2p.median.Cylinder = childElement.Value?.Trim();
+                                    }
+                                    else if (childElement.Name == nsREF + "Axis")
+                                    {
+                                        obj_trk2p.median.Axis = childElement.Value?.Trim();
+                                    }
+                                    else if (childElement.Name == nsREF + "SE")
+                                    {
+                                        obj_trk2p.median.SE = childElement.Value?.Trim();
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -636,7 +657,7 @@ namespace ConexionTopCon
         }
         private void ShowMessageTRK2P(TRK2P obj_trk2p)
         {
-            StringBuilder message = new StringBuilder();
+            StringBuilder message = new();
             message.AppendLine("Ophthalmology Data:");
             message.AppendLine($"Common:");
             message.AppendLine($"- Company: {obj_trk2p?.common?.Company}");
