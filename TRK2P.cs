@@ -57,8 +57,6 @@ namespace ConexionTopCon
 
 
 
-
-
         [XmlRoot(ElementName = "Cylinder")]
         public class Cylinder
         {

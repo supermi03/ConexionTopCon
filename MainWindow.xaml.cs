@@ -644,15 +644,14 @@ namespace ConexionTopCon
             message.AppendLine($"- MachineNo: {obj_trk2p?.common?.MachineNo}");
             message.AppendLine($"- ROMVersion: {obj_trk2p?.common?.ROMVersion}");
             message.AppendLine($"- Version: {obj_trk2p?.common?.Version}");
-            message.AppendLine($"- Date: {obj_trk2p?.common?.Date?.ToString("yyyy-MM-dd") ?? "N/A"}");
-            message.AppendLine($"- Time: {obj_trk2p?.common?.Time?.ToString("HH:mm:ss") ?? "N/A"}");
+            message.AppendLine($"- Date: {obj_trk2p?.common?.Date?.ToString("yyyy-MM-dd")}");
+            message.AppendLine($"- Time: {obj_trk2p?.common?.Time?.ToString("HH:mm:ss")}");
 
             message.AppendLine($"Measure {obj_trk2p?.measure.Type}");
             message.AppendLine($"VD: {obj_trk2p?.measure.VD}");
             message.AppendLine($"DiopterStep: {obj_trk2p?.measure.DiopterStep}");
             message.AppendLine($"AxisStep: {obj_trk2p?.measure.AxisStep}");
             message.AppendLine($"CylinderMode: {obj_trk2p?.measure.CylinderMode}");
-
 
             message.AppendLine($"Ref: No {obj_trk2p?.list.No}");
             message.AppendLine($"Sphere: {obj_trk2p?.list.Sphere}"); 
@@ -679,7 +678,6 @@ namespace ConexionTopCon
             message.AppendLine($"Power: {obj_trk2p?.r1.Power}");
             message.AppendLine($"Axis: {obj_trk2p?.r1.Axis}");
 
-
             message.AppendLine($"Type: {obj_trk2p?.measure.Type}");
             message.AppendLine($"Measure: {obj_trk2p?.r1.Radius}");
             message.AppendLine($"Measure: {obj_trk2p?.r1.Power}");
@@ -694,8 +692,6 @@ namespace ConexionTopCon
             //message.AppendLine($"Type: {obj_trk2p?.correctedIOP.Formula1.R}");
             //message.AppendLine($"Type: {obj_trk2p?.correctedIOP.Formula1.L}");
 
-
-
             message.AppendLine($"Type: {obj_trk2p?.tm.RLOrder}");
             message.AppendLine($"Type: {obj_trk2p?.tm.R}");
             message.AppendLine($"Type: {obj_trk2p?.tm.L}");
@@ -709,8 +705,6 @@ namespace ConexionTopCon
 
 
             MessageBox.Show(message.ToString(), "Datos del TRK2P");
-
-
         }
         // Método común para extraer datos generales compartidos entre los modelos
         private void ExtractCommons(XElement element, AparatosTopcon _ObjToFill)
@@ -818,8 +812,5 @@ namespace ConexionTopCon
                 }
             }
         }
-
-
-
     }
 }
